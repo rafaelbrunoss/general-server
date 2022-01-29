@@ -4,8 +4,8 @@ import { CoreError } from '@core/domain/models/errors/coreError.model';
 import { CoreErrors } from '@core/domain/models/errors/coreErrors.enum';
 
 export class Role {
-  public readonly id: string = '';
-  public readonly name: string = '';
+  public id: string = '';
+  public name: string = '';
 
   constructor(role: Partial<Role>) {
     try {

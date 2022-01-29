@@ -5,11 +5,14 @@ import { CoreError } from '@core/domain/models/errors/coreError.model';
 import { CoreErrors } from '@core/domain/models/errors/coreErrors.enum';
 
 export class User {
-  public readonly id: string = '';
-  public readonly name: string = '';
-  public readonly email: string = '';
-  public readonly password: string = '';
-  public readonly role: Role = new Role({});
+  public id: string = '';
+  public name: string = '';
+  public email: string = '';
+  public password: string = '';
+  public role: Role = new Role({
+    id: 'id',
+    name: 'name',
+  });
 
   constructor(user: Partial<User>) {
     try {

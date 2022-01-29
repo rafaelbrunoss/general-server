@@ -20,6 +20,7 @@ describe('Core/Domain/Services/User', () => {
     it('Should create an FindUserRequest without findOptions', () => {
       const findUserRequest = new FindUserRequest({
         condition: {},
+        findOptions: undefined,
       });
       chai.expect(findUserRequest).to.be.an('object');
       chai.expect(findUserRequest.condition).to.be.an('object');
