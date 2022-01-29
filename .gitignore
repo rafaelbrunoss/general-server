@@ -1,0 +1,10 @@
+.clinic/
+.nyc_output/
+.stryker-tmp/
+coverage/
+dist/
+logs/
+node_modules/
+reports/
+src/**/__pycache__/
+stryker.log

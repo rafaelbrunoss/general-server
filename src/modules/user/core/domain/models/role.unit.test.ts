@@ -1,0 +1,61 @@
+import { chai } from '@tests/test-utils';
+import { Role } from '@modules/user/core/domain/models/role.model';
+import { CoreErrors } from '@core/domain/models/errors/coreErrors.enum';
+import { BaseError } from '@core/domain/models/errors/baseError.model';
+
+describe('Core/Domain/Models/User', () => {
+  describe('Role', () => {
+    it('Should create a Role', () => {
+      const role = new Role({
+        id: 'id',
+        name: 'name',
+      });
+      chai.expect(role).to.be.an('object');
+      chai.expect(role.id).to.be.a('string');
+      chai.expect(role.name).to.be.a('string');
+      chai.expect(role).to.not.have.keys(['roleName']);
+      chai.expect(role).to.have.keys(['id', 'name']);
+    });
+
+    it('Should not create a Role, because Role.id should not be empty', () => {
+      try {
+        const role = new Role({
+          id: '',
+          name: 'name',
+        });
+        chai.expect(role).to.not.be.an('object');
+      } catch (error: BaseError | any) {
+        chai.expect(error.code).to.eql(CoreErrors.VALIDATION_ERROR);
+        chai.expect(error.message).to.eql('"id" is not allowed to be empty');
+      }
+    });
+
+    it('Should not create a Role, because Role.name should not be empty', () => {
+      try {
+        const role = new Role({
+          id: 'id',
+          name: '',
+        });
+        chai.expect(role).to.not.be.an('object');
+      } catch (error: BaseError | any) {
+        chai.expect(error.code).to.eql(CoreErrors.VALIDATION_ERROR);
+        chai.expect(error.message).to.eql('"name" is not allowed to be empty');
+      }
+    });
+
+    it('Should not create a Role, because Role.name should not be over 50 characteres', () => {
+      try {
+        const role = new Role({
+          id: 'id',
+          name: 'namesnamesnamesnamesnamesnamesnamesnamesnamesnames0',
+        });
+        chai.expect(role).to.not.be.an('object');
+      } catch (error: BaseError | any) {
+        chai.expect(error.code).to.eql(CoreErrors.VALIDATION_ERROR);
+        chai
+          .expect(error.message)
+          .to.eql('"name" length must be less than or equal to 50 characters long');
+      }
+    });
+  });
+});

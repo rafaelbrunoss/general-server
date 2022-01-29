@@ -1,0 +1,10 @@
+version: '3.8'
+
+services:
+  hadolint:
+    image: hadolint/hadolint
+    container_name: hadolint
+    volumes: 
+      - ../../../Dockerfile:/var/lib/Dockerfile:ro
+      - ./hadolint.yml:/var/lib/hadolint.yml:ro
+    command: hadolint --config /var/lib/hadolint.yml /var/lib/Dockerfile

@@ -1,0 +1,12 @@
+version: '2.4'
+
+services:
+  sonarscanner:
+    image: sonarsource/sonar-scanner-cli
+    container_name: sonarscanner
+    volumes:
+      - ./:/usr/src
+    network_mode: bridge
+    # command:
+    #   - sonar-scanner -Dsonar.projectKey=general_server -Dsonar.sources=. -Dsonar.host.url=http://localhost:9000 -Dsonar.login=b291dc262117361bc8e4d029fb30a9eda7212c75
+

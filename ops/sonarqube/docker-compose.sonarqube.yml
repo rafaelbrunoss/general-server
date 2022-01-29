@@ -1,0 +1,59 @@
+version: '2.4'
+
+services:
+  sonarqube:
+    image: sonarqube
+    container_name: sonarqube
+    hostname: sonarqube
+    ports:
+      - 9000:9000
+    networks:
+      - sonarnet
+    environment:
+      - sonar.jdbc.username=sonar
+      - sonar.jdbc.password=sonar
+      - sonar.jdbc.url=jdbc:postgresql://db:5432/sonar
+      - sonar.jdbc.sources=src
+      - SONAR_LOGIN_TOKEN=b291dc262117361bc8e4d029fb30a9eda7212c75
+    volumes:
+      - sonarqube_conf:/opt/sonarqube/conf
+      - sonarqube_data:/opt/sonarqube/data
+      - sonarqube_extensions:/opt/sonarqube/extensions
+      - sonarqube_bundled-plugins:/opt/sonarqube/lib/bundled-plugins
+    ulimits:
+      nofile:
+        soft: 65536
+        hard: 65536
+    depends_on:
+      - db
+
+  db:
+    image: postgres
+    networks:
+      - sonarnet
+    environment:
+      - POSTGRES_USER=sonar
+      - POSTGRES_PASSWORD=sonar
+    volumes:
+      - /opt/postgresql/sonarqube/data:/var/lib/postgresql/data
+
+  sonarscanner:
+    image: sonarsource/sonar-scanner-cli
+    container_name: sonarscanner
+    volumes:
+      - ./:/usr/src
+      #- ./sonar-scanner.properties:/opt/sonar-scanner/conf/sonar-scanner.properties
+    networks:
+      - sonarnet
+    # command:
+    #   - sonar-scanner -Dsonar.projectKey=general_server -Dsonar.sources=. -Dsonar.host.url=http://sonarqube:9000 -Dsonar.login=b291dc262117361bc8e4d029fb30a9eda7212c75
+    
+networks:
+  sonarnet:
+    driver: bridge
+
+volumes:
+  sonarqube_conf:
+  sonarqube_data:
+  sonarqube_extensions:
+  sonarqube_bundled-plugins:
