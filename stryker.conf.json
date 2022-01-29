@@ -1,23 +1,14 @@
 {
   "coverageAnalysis": "all",
   "fileLogLevel": "debug",
-  "files": [
-    "src/**/*.ts"
-  ],
+  "files": ["src/**/*.ts"],
   "mochaOptions": {
     "config": "../../tests/.mocharc.yml",
-    "spec": [
-      "src/**/*.test.ts"
-    ]
+    "spec": ["src/**/*.test.ts"]
   },
-  "mutate": [
-    "src/**/*.test.ts"
-  ],
+  "mutate": ["src/**/*.test.ts"],
   "packageManager": "npm",
-  "reporters": [
-    "progress",
-    "html"
-  ],
+  "reporters": ["progress", "html"],
   "testRunner": "mocha",
   "tsconfigFile": "tsconfig.json"
 }

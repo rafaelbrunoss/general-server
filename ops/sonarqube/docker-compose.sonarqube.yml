@@ -47,7 +47,7 @@ services:
       - sonarnet
     # command:
     #   - sonar-scanner -Dsonar.projectKey=general_server -Dsonar.sources=. -Dsonar.host.url=http://sonarqube:9000 -Dsonar.login=b291dc262117361bc8e4d029fb30a9eda7212c75
-    
+
 networks:
   sonarnet:
     driver: bridge

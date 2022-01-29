@@ -6,7 +6,7 @@ server.name: kibana
 server.host: '0.0.0.0'
 
 # Elasticsearch Connection
-elasticsearch.hosts: [ 'http://${ELASTICSEARCH_HOST_PORT}' ]
+elasticsearch.hosts: ['http://${ELASTICSEARCH_HOST_PORT}']
 
 # SSL settings
 # server.ssl.enabled: true
@@ -22,11 +22,8 @@ elasticsearch.username: ${ELASTIC_USERNAME}
 elasticsearch.password: ${ELASTIC_PASSWORD}
 # elasticsearch.ssl.certificateAuthorities: [ '/certs/ca.crt' ]
 
-
 ## Misc
 elasticsearch.requestTimeout: 90000
-
-
 ## ElastAlert Plugin
 #elastalert-kibana-plugin.serverHost: elastalert
 #elastalert-kibana-plugin.serverPort: 3030

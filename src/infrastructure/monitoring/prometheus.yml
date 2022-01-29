@@ -9,19 +9,19 @@ scrape_configs:
   - job_name: app
     static_configs:
       - targets:
-        - localhost
+          - localhost
 
   - job_name: prometheus
-    static_configs: 
+    static_configs:
       - targets:
-        - prometheus:4001
-  
+          - prometheus:4001
+
   - job_name: cadvisor
     static_configs:
       - targets:
-        - cadvisor:4002
+          - cadvisor:4002
 
   - job_name: node_exporter
-    static_configs: 
+    static_configs:
       - targets:
-        - node_exporter:4003
+          - node_exporter:4003
